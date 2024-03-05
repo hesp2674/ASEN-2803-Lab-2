@@ -1,8 +1,8 @@
 clear; close all; clc;
 
-r = 0.0085; % meters
-d = 0.155; % meters
-l = 0.255; % meters
+r = 8.5; % cm
+d = 15.5; % cm
+l = 25.5; % cm
 theta = 0:360*6; % degrees
 w = 100; % degrees/sec
 
