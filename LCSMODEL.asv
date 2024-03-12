@@ -1,6 +1,0 @@
-function [v_mod] = LCSMODEL(r,d,l,theta,w)
-
-
-
-
-v_mod = w*r*cos(theta)-w*r*l*;
