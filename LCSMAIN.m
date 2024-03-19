@@ -37,11 +37,11 @@ residual_10pt5 = v_exp_10pt5-v_mod_10pt5;
 
 residual_stds = [std(residual_5pt5);std(residual_6pt5);std(residual_7pt5);std(residual_8pt5);std(residual_9pt5);std(residual_10pt5)];
 residual_means = [mean(residual_5pt5);mean(residual_6pt5);mean(residual_7pt5);mean(residual_8pt5);mean(residual_9pt5);mean(residual_10pt5)];
-
+abs_residual_means = [mean(abs(residual_5pt5));mean(abs(residual_6pt5));mean(abs(residual_7pt5));mean(abs(residual_8pt5));mean(abs(residual_9pt5));mean(abs(residual_10pt5))];
 mean_and_std = table(residual_means,residual_stds);
 
 figure(1)
-plot(theta_exp_5pt5,v_mod_5pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+plot(theta,v_mod, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
 xlabel('Theta (deg)');
 ylabel('Velocity (cm/s)');
 title('Test Model');
@@ -49,29 +49,31 @@ title('Test Model');
 
 %Plotting velocity vs theta for each test
 figure(2)
+subplot(2,3,1);
 plot(theta_exp_5pt5,v_exp_5pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Experiment Theta Value (deg)');
 ylabel('Experiment Velocity Value (cm/s)');
 title('Velocoity vs Theta Graph for Experiment with 5.5V');
 xlim([0,3600]);
-%ylim([-200,300]);
+ylim([-200,300]);
 hold on
 plot(theta_exp_5pt5,v_mod_5pt5,'-o', 'LineWidth',1, MarkerFaceColor='blue',MarkerSize=2);
 legend('Exp','Model');
 hold off
 
-figure(3)
+subplot(2,3,2);
 plot(theta_exp_6pt5,v_exp_6pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Experiment Theta Value (deg)');
 ylabel('Experiment Velocity Value (cm/s)');
 title('Velocoity vs Theta Graph for Experiment with 6.5V');
 xlim([0,3600]);
-%ylim([-200,300]);
+ylim([-200,300]);
 hold on
 plot(theta_exp_6pt5,v_mod_6pt5,'-o', 'LineWidth',1, MarkerFaceColor='blue',MarkerSize=2);
 legend('Exp','Model');
+hold off
 
-figure(4)
+subplot(2,3,3);
 plot(theta_exp_7pt5,v_exp_7pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Experiment Theta Value (deg)');
 ylabel('Experiment Velocity Value (cm/s)');
@@ -81,8 +83,9 @@ ylim([-200,300]);
 hold on
 plot(theta_exp_7pt5,v_mod_7pt5,'-o', 'LineWidth',1, MarkerFaceColor='blue',MarkerSize=2);
 legend('Exp','Model');
+hold off
 
-figure(5)
+subplot(2,3,4);
 plot(theta_exp_8pt5,v_exp_8pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Experiment Theta Value (deg)');
 ylabel('Experiment Velocity Value (cm/s)');
@@ -92,8 +95,9 @@ ylim([-200,300]);
 hold on
 plot(theta_exp_8pt5,v_mod_8pt5,'-o', 'LineWidth',1, MarkerFaceColor='blue',MarkerSize=2);
 legend('Exp','Model');
+hold off
 
-figure(6)
+subplot(2,3,5);
 plot(theta_exp_9pt5,v_exp_9pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Experiment Theta Value (deg)');
 ylabel('Experiment Velocity Value (cm/s)');
@@ -103,8 +107,9 @@ ylim([-200,300]);
 hold on
 plot(theta_exp_9pt5,v_mod_9pt5,'-o', 'LineWidth',1, MarkerFaceColor='blue',MarkerSize=2);
 legend('Exp','Model');
+hold off
 
-figure(7)
+subplot(2,3,6);
 plot(theta_exp_10pt5,v_exp_10pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Experiment Theta Value (deg)');
 ylabel('Experiment Velocity Value (cm/s)');
@@ -114,48 +119,129 @@ ylim([-200,300]);
 hold on
 plot(theta_exp_10pt5,v_mod_10pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
 legend('Exp','Model');
+hold off
 
-
-
-
-
-figure(8)
-plot(time_5pt5,(v_exp_5pt5-v_mod_5pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+figure(3)
+subplot(2,3,1);
+plot(time_5pt5,residual_5pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(residual_means(1), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
-title('Residual vs Time for 5.5V');
+title('Signed Residual vs Time for 5.5V');
+hold off
 
-figure(9)
-plot(time_6pt5,(v_exp_6pt5-v_mod_6pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+subplot(2,3,2);
+plot(time_6pt5,residual_6pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(residual_means(2), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
-title('Residual vs Time for 6.5V');
+title('Signed Residual vs Time for 6.5V');
+hold off
 
-figure(10)
-plot(time_7pt5,(v_exp_7pt5-v_mod_7pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+subplot(2,3,3);
+plot(time_7pt5,residual_7pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(residual_means(3), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
-title('Residual vs Time for 7.5V');
+title('Signed Residual vs Time for 7.5V');
+hold off
 
-figure(11)
-plot(time_8pt5,(v_exp_8pt5-v_mod_8pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+subplot(2,3,4);
+plot(time_8pt5,residual_8pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(residual_means(4), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
-title('Residual vs Time for 8.5V');
+title('Signed Residual vs Time for 8.5V');
+hold off
 
-figure(12)
-plot(time_9pt5,(v_exp_9pt5-v_mod_9pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+subplot(2,3,5);
+plot(time_9pt5,residual_9pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(residual_means(5), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
-title('Residual vs Time for 9.5V');
+title('Signed Residual vs Time for 9.5V');
+hold off
 
-figure(13)
-plot(time_10pt5,(v_exp_10pt5-v_mod_10pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+subplot(2,3,6);
+plot(time_10pt5,residual_10pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(residual_means(6), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
-title('Residual vs Time for 10.5V');
+title('Signed Residual vs Time for 10.5V');
+hold off
 
-figure(14)
+figure(4)
+subplot(2,3,1);
+plot(time_5pt5,abs(residual_5pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(abs_residual_means(1), "LineWidth", 1,"Color","red")
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+title('Absolute Residual vs Time for 5.5V');
+hold off
+
+subplot(2,3,2);
+plot(time_6pt5,abs(residual_6pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(abs_residual_means(2), "LineWidth", 1,"Color","red")
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+title('Absolute Residual vs Time for 6.5V');
+hold off
+
+subplot(2,3,3);
+plot(time_7pt5,abs(residual_7pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(abs_residual_means(3), "LineWidth", 1,"Color","red")
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+title('Absolute Residual vs Time for 7.5V');
+hold off 
+
+subplot(2,3,4);
+plot(time_8pt5,abs(residual_8pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(abs_residual_means(4), "LineWidth", 1,"Color","red")
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+title('Absolute Residual vs Time for 8.5V');
+hold off
+
+subplot(2,3,5);
+plot(time_9pt5,abs(residual_9pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(abs_residual_means(5), "LineWidth", 1,"Color","red")
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+title('Absolute Residual vs Time for 9.5V');
+hold off
+
+subplot(2,3,6);
+plot(time_10pt5,abs(residual_10pt5), "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on
+yline(abs_residual_means(6), "LineWidth", 1,"Color","red")
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+title('Absolute Residual vs Time for 10.5V');
+hold off
+
+figure(5)
+plot(time_10pt5,residual_10pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
+hold on 
+plot(time_10pt5,abs(residual_10pt5), "-o", "LineWidth", 1, MarkerFaceColor="red", MarkerSize=2);
+xlabel('Time (s)');
+ylabel('Residuals (cm/s)');
+legend('Signed Residuals','Absolute Residuals','Location','southwest')
+title('Comparison of Signed Residuals and Absolute Residuals for 10.5V')
+hold off
+
+figure(6)
 plot(time_5pt5,residual_5pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
@@ -167,3 +253,18 @@ plot(time_8pt5,residual_8pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSi
 plot(time_9pt5,residual_9pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 plot(time_10pt5,residual_10pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 legend('5.5V','6.5V','7.5V','8.5V','9.5V','10.5V',Location='southeast');
+hold off
+
+figure(6)
+plot(theta_exp_5pt5,residual_5pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
+xlabel('Theta (degrees)');
+ylabel('Residuals (cm/s)');
+title('Residual vs Theta for All Voltages')
+hold on
+plot(theta_exp_6pt5,residual_6pt5,'-o', 'LineWidth',1, MarkerFaceColor='y',MarkerSize=2);
+plot(theta_exp_7pt5,residual_7pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
+plot(theta_exp_8pt5,residual_8pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
+plot(theta_exp_9pt5,residual_9pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
+plot(theta_exp_10pt5,residual_10pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
+legend('5.5V','6.5V','7.5V','8.5V','9.5V','10.5V',Location='southeast');
+hold off
