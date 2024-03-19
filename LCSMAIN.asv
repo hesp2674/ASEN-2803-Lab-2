@@ -262,8 +262,7 @@ xlim([0,12]);
 ylim([0,30]);
 hold off
 
-%plot signed residuals vs time and absolute residual vs time for 10.5V in
-%same figure
+%plot signed residuals vs time for all tests in one figure
 figure(5)
 plot(time_10pt5,residual_10pt5, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
 hold on 
@@ -274,7 +273,7 @@ legend('Signed Residuals','Absolute Residuals','Location','southwest')
 title('Comparison of Signed Residuals and Absolute Residuals for 10.5V')
 hold off
 
-%plot signed residuals vs time for all tests in one figure
+%plot signed residuals vs theta for all tests in one figure
 figure(6)
 plot(time_5pt5,residual_5pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Time (s)');
@@ -289,7 +288,6 @@ plot(time_10pt5,residual_10pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',Marker
 legend('5.5V','6.5V','7.5V','8.5V','9.5V','10.5V',Location='southeast');
 hold off
 
-%plot signed residuals vs theta for all tests in one figure
 figure(6)
 plot(theta_exp_5pt5,residual_5pt5,'-o', 'LineWidth',1, MarkerFaceColor='red',MarkerSize=2);
 xlabel('Theta (degrees)');

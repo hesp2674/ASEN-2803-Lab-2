@@ -2,8 +2,6 @@ function [theta_exp,w_exp,v_exp,time] = LCSDATA(filename)
 %load in the inputed filename and convert it to array
 exp_data = load(filename);
 
-%theta = exp_data(:,2);
-%theta_exp = theta - 360*floor(theta(1)/360);%delete all value with first index of theta to make it start from 0
 theta_exp = exp_data(:,2);%take measured theta from experiment
 
 %since experiment data with 9.5V does not line up with first cycle, we take
@@ -18,5 +16,5 @@ theta_exp = theta_exp(theta_logical);%only take measurements that is after found
 time = exp_data(theta_logical,1); %take measured time from experiment
 w_exp = exp_data(theta_logical,4); %take measured omega from experiment
 v_exp = exp_data(theta_logical,5)./10; %covert mm/s to cm/s
-theta_exp = theta_exp - theta_exp(1);
+theta_exp = theta_exp - theta_exp(1); %make theta start form 0
 end
