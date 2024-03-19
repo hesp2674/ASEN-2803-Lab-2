@@ -38,7 +38,7 @@ residual_10pt5 = v_exp_10pt5-v_mod_10pt5;
 residual_stds = [std(residual_5pt5);std(residual_6pt5);std(residual_7pt5);std(residual_8pt5);std(residual_9pt5);std(residual_10pt5)];
 residual_means = [mean(residual_5pt5);mean(residual_6pt5);mean(residual_7pt5);mean(residual_8pt5);mean(residual_9pt5);mean(residual_10pt5)];
 abs_residual_means = [mean(abs(residual_5pt5));mean(abs(residual_6pt5));mean(abs(residual_7pt5));mean(abs(residual_8pt5));mean(abs(residual_9pt5));mean(abs(residual_10pt5))];
-mean_and_std = table(residual_means,residual_stds);
+mean_and_std = table(residual_means,abs_residual_means,residual_stds);
 
 figure(1)
 plot(theta,v_mod, "-o", "LineWidth", 1, MarkerFaceColor="blue", MarkerSize=2);
@@ -129,6 +129,8 @@ yline(residual_means(1), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Signed Residual vs Time for 5.5V');
+xlim([0,12]);
+ylim([-30,30]);
 hold off
 
 subplot(2,3,2);
@@ -138,6 +140,8 @@ yline(residual_means(2), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Signed Residual vs Time for 6.5V');
+xlim([0,12]);
+ylim([-30,30]);
 hold off
 
 subplot(2,3,3);
@@ -147,6 +151,8 @@ yline(residual_means(3), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Signed Residual vs Time for 7.5V');
+xlim([0,12]);
+ylim([-30,30]);
 hold off
 
 subplot(2,3,4);
@@ -156,6 +162,8 @@ yline(residual_means(4), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Signed Residual vs Time for 8.5V');
+xlim([0,12]);
+ylim([-30,30]);
 hold off
 
 subplot(2,3,5);
@@ -165,6 +173,8 @@ yline(residual_means(5), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Signed Residual vs Time for 9.5V');
+xlim([0,12]);
+ylim([-30,30]);
 hold off
 
 subplot(2,3,6);
@@ -174,6 +184,8 @@ yline(residual_means(6), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Signed Residual vs Time for 10.5V');
+xlim([0,12]);
+ylim([-30,30]);
 hold off
 
 figure(4)
@@ -184,6 +196,8 @@ yline(abs_residual_means(1), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Absolute Residual vs Time for 5.5V');
+xlim([0,12]);
+ylim([0,30]);
 hold off
 
 subplot(2,3,2);
@@ -193,6 +207,8 @@ yline(abs_residual_means(2), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Absolute Residual vs Time for 6.5V');
+xlim([0,12]);
+ylim([0,30]);
 hold off
 
 subplot(2,3,3);
@@ -202,6 +218,8 @@ yline(abs_residual_means(3), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Absolute Residual vs Time for 7.5V');
+xlim([0,12]);
+ylim([0,30]);
 hold off 
 
 subplot(2,3,4);
@@ -211,6 +229,8 @@ yline(abs_residual_means(4), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Absolute Residual vs Time for 8.5V');
+xlim([0,12]);
+ylim([0,30]);
 hold off
 
 subplot(2,3,5);
@@ -220,6 +240,8 @@ yline(abs_residual_means(5), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Absolute Residual vs Time for 9.5V');
+xlim([0,12]);
+ylim([0,30]);
 hold off
 
 subplot(2,3,6);
@@ -229,6 +251,8 @@ yline(abs_residual_means(6), "LineWidth", 1,"Color","red")
 xlabel('Time (s)');
 ylabel('Residuals (cm/s)');
 title('Absolute Residual vs Time for 10.5V');
+xlim([0,12]);
+ylim([0,30]);
 hold off
 
 figure(5)
